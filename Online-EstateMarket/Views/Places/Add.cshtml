@@ -1,0 +1,103 @@
+﻿@model AddPlaceDto
+
+<div class="row mt-5">
+    <div class="col-md-6">
+        <form asp-controller="places" asp-action="add" enctype="multipart/form-data">
+            <div class="card mb-4" style="margin: 0px !important; padding: 0px !important">
+                <h5 class="card-header">New place</h5>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label for="defaultFormControlInput" class="form-label">Title</label>
+                        <input asp-for="Title"
+                               type="text"
+                               class="form-control"
+                               id="defaultFormControlInput"
+                               aria-describedby="defaultFormControlHelp" />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="defaultFormControlInput" class="form-label">Description</label>
+                        <input asp-for="Description"
+                               type="text"
+                               class="form-control"
+                               id="defaultFormControlInput"
+                               aria-describedby="defaultFormControlHelp" />
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="defaultFormControlInput" class="form-label">Floor</label>
+                        <input asp-for="Floor"
+                               type="number"
+                               class="form-control"
+                               id="defaultFormControlInput"
+                               aria-describedby="defaultFormControlHelp" />
+                        <span asp-validation-for="Floor" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="defaultFormControlInput" class="form-label">Area</label>
+                        <input asp-for="Area"
+                               type="text"
+                               class="form-control"
+                               id="defaultFormControlInput"
+                               aria-describedby="defaultFormControlHelp" />
+                        <span asp-validation-for="Area" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="defaultFormControlInput" class="form-label">Address</label>
+                        <input asp-for="Address"
+                               type="text"
+                               class="form-control"
+                               id="defaultFormControlInput"
+                               aria-describedby="defaultFormControlHelp" />
+                        <span asp-validation-for="Address" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="defaultFormControlInput" class="form-label">Price($)</label>
+                        <input asp-for="Price"
+                               type="number"
+                               class="form-control"
+                               id="defaultFormControlInput"
+                               aria-describedby="defaultFormControlHelp" />
+                        <span asp-validation-for="Price" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="defaultFormControlInput" class="form-label">Category</label>
+                        <select asp-for="CategoryId" class="form-select" aria-label="Default select example">
+                            <option value="0" disabled>-- Select category --</option>
+                            @foreach (var category in Model.Categories)
+                            {
+                                <option value="@category.Id">@category.Name</option>
+                            }
+                            <span asp-validation-for="CategoryId" class="text-danger"></span>
+                        </select>
+                        <span asp-validation-for="CategoryId" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="defaultFormControlInput" class="form-label">Brand</label>
+                        <select asp-for="BrandId" class="form-select" aria-label="Default select example">
+                            <option value="0" disabled>-- Select brand --</option>
+                            @foreach (var brand in Model.Brands)
+                            {
+                                <option value="@brand.Id">@brand.Name</option>
+                            }
+                            <span asp-validation-for="BrandId" class="text-danger"></span>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label">Image(s)</label>
+                        <input asp-for="ImageUrl" class="form-control" type="file" id="formFile" multiple />
+                        <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                    </div>
+
+                    <div class="d-flex justify-content-center form-links">
+                        <a asp-controller="places" asp-action="index" class="me-2 btn btn-gray">Cencel</a>
+
+                        <button type="submit" class="btn btn-primary">
+                            Save
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

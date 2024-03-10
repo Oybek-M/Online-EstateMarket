@@ -1,0 +1,101 @@
+﻿@model PlaceDto
+
+<div class="container-xxl flex-grow-1 container-p-y">
+    <a class="btn btn-outline-info mb-3" asp-controller="places" asp-action="index" >
+        <i class="bi bi-arrow-left"></i> Back
+    </a>
+
+    <div class="col d-flex justify-content-center align-content-center">
+        <div class="col-md-6">
+            <h2>
+                Title: <b class="text-dark">@Model.Title</b>
+            </h2>
+
+            <h3>
+                Description: <br>
+                <p class="text-dark">@Model.Description</p>
+            </h3>
+
+            <h3>
+                Address: <span class="text-dark">@Model.Address</span>
+            </h3>
+
+            <h3>
+                Floor: <span class="text-dark">@Model.Floor</>
+            </h3>
+
+            <h3>
+                Area of place: <span class="text-dark">@Model.Area</span>
+            </h3>
+
+            <h2>
+                Price: <span class="text-dark">@Model.Price</span> <b class="text-success">$</b>
+            </h2>
+        </div>
+
+        <div class="col-md-6">
+            <h1>
+                Category: <b class="text-dark">@Model.Category.Name</b>
+                <div>
+                    <img src="@Model.Category.ImageUrl" width="300" alt="img" asp-append-version="true" >
+                </div>
+            </h1>
+
+            <h1>
+                Brand: <b class="text-dark">@Model.Brand.Name</b>
+                <div>
+                    <img src="@Model.Brand.ImageUrl" width="300" alt="img" asp-append-version="true" >
+                </div>
+            </h1>
+        </div>
+
+
+        <div>
+
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+@* <div class="container-xxl flex-grow-1 container-p-y">
+    <a class="btn btn-outline-secondary mb-2" asp-controller="places" asp-action="index">
+        <i class="bi bi-arrow-left"></i> Back
+    </a>
+    <div class="card p-5">
+
+        <div class="row">
+            <div class="col-md-6">
+                <h4>Title: @Model.Title</h4>
+                <h4>
+                    Brend:
+                    <div class="border p-2 mt-2">
+                        <img src="@Model.Brand.ImageUrl" width="70" height="50" style="object-fit: contain" asp-append-version="true" />
+                        @Model.Brand.Name
+                    </div>
+                </h4>
+            </div>
+            <div class="col-md-6">
+                <h4>
+                    Category:
+                    <div class="border p-2 mt-2">
+                        <img src="@Model.Category.ImageUrl" width="70" height="50" style="object-fit: contain" asp-append-version="true" />
+                        @Model.Category.Name
+                    </div>
+                </h4>
+                <h4>Price: @Model.Price</h4>
+            </div>
+        </div>
+        <p><b>Description:</b> <br /> @Model.Description</p>
+    </div>
+</div>
+
+ *@

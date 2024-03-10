@@ -1,0 +1,44 @@
+﻿@model UpdatePlaceDto
+
+<input type="hidden" asp-for="Id" />
+<div class="row mt-5">
+    <div class="col-md-6">
+        <form asp-controller="places" asp-action="edit" enctype="multipart/form-data">
+            <div class="card mb-4" style="margin: 0px !important; padding: 0px !important">
+                <h5 class="card-header">Update place</h5>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label for="defaultFormControlInput" class="form-label">Title</label>
+                        <input asp-for="Title"
+                               type="text"
+                               class="form-control"
+                               id="defaultFormControlInput"
+                               aria-describedby="defaultFormControlHelp" />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label">Current Image</label>
+                        <br />
+                        <input asp-for="Id" type="hidden" />
+                        <input asp-for="ImageUrl" type="hidden" />
+                        <img src="@Model.ImageUrl" width="150" asp-append-version="true" class="img-fluid" />
+                    </div>
+
+@*                     <div class="mb-3">
+                        <label for="formFile" class="form-label">New Image</label>
+                        <input asp-for="File" class="form-control" type="file" id="formFile" />
+                        <span asp-validation-for="File" class="text-danger"></span>
+                    </div> *@
+
+                    <div class="d-flex justify-content-center form-links">
+                        <a asp-controller="places" asp-action="index" class="me-2 btn btn-gray">Cencel</a>
+
+                        <button type="submit" class="btn btn-primary">
+                            Save
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
