@@ -12,7 +12,7 @@ public class Place : BaseEntity
 
     public string Area { get; set; }
 
-    public List<Image> ImageUrl { get; set; }
+    public List<Image> ImageUrl { get; set; } = new();
 
     public double Price { get; set; }
 

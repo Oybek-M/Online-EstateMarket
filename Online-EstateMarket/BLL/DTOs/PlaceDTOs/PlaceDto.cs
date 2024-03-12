@@ -1,6 +1,4 @@
-﻿using Online_EstateMarket.Data.Entities;
-
-namespace Online_EstateMarket.BLL.DTOs.PlaceDtos;
+﻿namespace Online_EstateMarket.BLL.DTOs.PlaceDtos;
 
 public class PlaceDto
 {
@@ -25,14 +23,14 @@ public class PlaceDto
 }
 public class ImageDto
 {
-    public int Id { get; set; }
+    //public int Id { get; set; }
     public string ImageUrl { get; set; }
 
     public int PlaceId { get; set; }
 
     public static implicit operator ImageDto(Image image) => new()
     {
-        Id = image.Id,
+        //Id = image.Id,
         ImageUrl = image.ImageUrl,
         PlaceId = image.PlaceId
     };

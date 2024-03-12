@@ -13,6 +13,35 @@ public class BrandService(IUnitOfWork unitOfWork,
     private readonly IFileService _fileService = fileService;
     private readonly IMapper _mapper = mapper;
 
+    public List<BrandDto> GetAll()
+    {
+        var categories = _unitOfWork.Brands.GetAll();
+        var list = categories.Select(_mapper.Map<BrandDto>)
+                             .ToList();
+
+        list.Reverse();
+        return list;
+    }
+
+    public BrandDto GetById(int id)
+    {
+        var brend = _unitOfWork.Brands.GetById(id);
+
+        if (brend == null)
+        {
+            throw new CustomException("", "Brend not found");
+        }
+
+        var dto = new BrandDto()
+        {
+            Id = brend.Id,
+            Name = brend.Name,
+            ImageUrl = brend.ImageUrl
+        };
+
+        return dto;
+    }
+
     public void Create(AddBrandDto brendDto)
     {
         if (brendDto == null)
@@ -44,46 +73,6 @@ public class BrandService(IUnitOfWork unitOfWork,
         _unitOfWork.Brands.Create(brend);
     }
 
-    public void Delete(int id)
-    {
-        var brend = _unitOfWork.Brands.GetById(id);
-
-        if (brend == null)
-        {
-            throw new CustomException("", "Brend not found");
-        }
-        _fileService.DeleteImage(brend.ImageUrl);
-        _unitOfWork.Brands.Delete(brend.Id);
-    }
-
-    public List<BrandDto> GetAll()
-    {
-        var categories = _unitOfWork.Brands.GetAll();
-        var list = categories.Select(_mapper.Map<BrandDto>)
-                             .ToList();
-
-        return list;
-    }
-
-    public BrandDto GetById(int id)
-    {
-        var brend = _unitOfWork.Brands.GetById(id);
-
-        if (brend == null)
-        {
-            throw new CustomException("", "Brend not found");
-        }
-
-        var dto = new BrandDto()
-        {
-            Id = brend.Id,
-            Name = brend.Name,
-            ImageUrl = brend.ImageUrl
-        };
-
-        return dto;
-    }
-
     public void Update(UpdateBrandDto brendDto)
     {
         var brend = _unitOfWork.Brands.GetById(brendDto.Id);
@@ -113,5 +102,17 @@ public class BrandService(IUnitOfWork unitOfWork,
         brend.ImageUrl = brendDto.ImageUrl;
 
         _unitOfWork.Brands.Update(brend);
+    }
+
+    public void Delete(int id)
+    {
+        var brend = _unitOfWork.Brands.GetById(id);
+
+        if (brend == null)
+        {
+            throw new CustomException("", "Brend not found");
+        }
+        _fileService.DeleteImage(brend.ImageUrl);
+        _unitOfWork.Brands.Delete(brend.Id);
     }
 }

@@ -85,7 +85,8 @@
                     </div>
                     <div class="mb-3">
                         <label for="formFile" class="form-label">Image(s)</label>
-                        <input asp-for="ImageUrl" class="form-control" type="file" id="formFile" multiple />
+                        <input asp-for="ImageUrl" id="formFile" class="form-control" type="file" accept="image/*" multiple />
+                        @* <input asp-for="ImageUrl" id="formFIle" class="form-control" type="file" multiple /> *@
                         <span asp-validation-for="ImageUrl" class="text-danger"></span>
                     </div>
 

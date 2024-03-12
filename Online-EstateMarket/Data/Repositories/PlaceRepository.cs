@@ -11,3 +11,4 @@ public class PlaceRepository(AppDbContext dbContext)
             .Include(p => p.ImageUrl)
             .ToList();
 }
+

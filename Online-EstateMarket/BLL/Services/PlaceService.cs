@@ -10,9 +10,9 @@ public class PlaceService(IUnitOfWork unitOfWork,
     public List<PlaceDto> GetAll()
     {
         var places = _unitOfWork.Places.GetPlaceWithReleations();
-        var dtos = places.Select(place => place.ToPlaceDto());
+        var _dtos = places.Select(place => place.ToPlaceDto());
 
-        return dtos.ToList();
+        return _dtos.ToList();
     }
 
 

@@ -7,6 +7,40 @@ public class CategoryService(IUnitOfWork unitOfWork,
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
     private readonly IFileService _fileService = fileService;
 
+    public List<CategoryDto> GetAll()
+    {
+        var categories = _unitOfWork.Categories.GetAll();
+        var list = categories.Select(c => new CategoryDto()
+        {
+            Id = c.Id,
+            Name = c.Name,
+            ImageUrl = c.ImageUrl
+        }).ToList();
+
+
+        list.Reverse();
+        return list;
+    }
+
+    public CategoryDto GetById(int id)
+    {
+        var category = _unitOfWork.Categories.GetById(id);
+
+        if (category == null)
+        {
+            throw new CustomException("", "Category not found");
+        }
+
+        var dto = new CategoryDto()
+        {
+            Id = category.Id,
+            Name = category.Name,
+            ImageUrl = category.ImageUrl
+        };
+
+        return dto;
+    }
+
     public void Create(AddCategoryDto categoryDto)
     {
         if (categoryDto == null)
@@ -38,50 +72,6 @@ public class CategoryService(IUnitOfWork unitOfWork,
         _unitOfWork.Categories.Create(category);
     }
 
-    public void Delete(int id)
-    {
-        var category = _unitOfWork.Categories.GetById(id);
-
-        if (category == null)
-        {
-            throw new CustomException("", "Category not found");
-        }
-        _fileService.DeleteImage(category.ImageUrl);
-        _unitOfWork.Categories.Delete(category.Id);
-    }
-
-    public List<CategoryDto> GetAll()
-    {
-        var categories = _unitOfWork.Categories.GetAll();
-        var list = categories.Select(c => new CategoryDto()
-        {
-            Id = c.Id,
-            Name = c.Name,
-            ImageUrl = c.ImageUrl
-        }).ToList();
-
-        return list;
-    }
-
-    public CategoryDto GetById(int id)
-    {
-        var category = _unitOfWork.Categories.GetById(id);
-
-        if (category == null)
-        {
-            throw new CustomException("", "Category not found");
-        }
-
-        var dto = new CategoryDto()
-        {
-            Id = category.Id,
-            Name = category.Name,
-            ImageUrl = category.ImageUrl
-        };
-
-        return dto;
-    }
-
     public void Update(UpdateCategoryDto categoryDto)
     {
         var category = _unitOfWork.Categories.GetById(categoryDto.Id);
@@ -111,5 +101,17 @@ public class CategoryService(IUnitOfWork unitOfWork,
         category.ImageUrl = categoryDto.ImageUrl;
 
         _unitOfWork.Categories.Update(category);
+    }
+
+    public void Delete(int id)
+    {
+        var category = _unitOfWork.Categories.GetById(id);
+
+        if (category == null)
+        {
+            throw new CustomException("", "Category not found");
+        }
+        _fileService.DeleteImage(category.ImageUrl);
+        _unitOfWork.Categories.Delete(category.Id);
     }
 }

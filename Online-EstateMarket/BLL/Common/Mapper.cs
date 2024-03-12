@@ -28,7 +28,7 @@ public static class Mapper
             Floor = place.Floor,
             Area = place.Area,
             Price = place.Price,
-            ImageUrl = place.ImageUrl,
+            //ImageUrl = place.ImageUrl.Select(i => (ImageDto)i).ToList(),
             Category = place.Category.ToCategoryDto(),
             Brand = place.Brand.ToBrandDto()
         };
